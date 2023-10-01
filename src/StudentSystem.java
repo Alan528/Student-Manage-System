@@ -22,7 +22,7 @@ public class StudentSystem {
             int choes = sc.nextInt();
             switch (choes) {
                 case 1 -> add(list);
-//                case 2 -> delete(list);
+                case 2 -> delete(list);
 //                case 3 -> modify(list);
                 case 4 -> search(list);
                 case 5 -> {
@@ -70,6 +70,18 @@ public class StudentSystem {
     }
 
     public static void delete(ArrayList<Student> list) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the ID you want to delete");
+        String deleteID = sc.next();
+        int index = getIndex(list,deleteID);
+        if (index>=0){
+            list.remove(index);
+            System.out.println("Removed "+deleteID);
+        }else {
+            System.out.println("There is no "+deleteID);
+        }
+
+
 
     }
 
@@ -105,6 +117,21 @@ public class StudentSystem {
 
 
 
+    }
+
+
+    public static int getIndex(ArrayList<Student> list, String deleteID){
+        for (int i = 0; i < list.size(); i++) {
+           Student stu = list.get(i);
+           String sid = stu.getId();
+           if (deleteID.equals(sid)){
+               return i;
+           }
+
+
+
+        }
+        return -1;
     }
 
 
